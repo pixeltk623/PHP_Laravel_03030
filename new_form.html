@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+
+		* {
+			box-sizing: border-box;
+		}
+		.container {
+			background-color: #5815A3;
+			width: 50%;
+			margin: auto;
+			padding: 20px;
+			
+		}
+		.col {
+			width: 50%;
+			float: left;
+		}
+		.row::after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+
+		input[type=text] {
+			width: 100%;
+			padding: 12px;
+			margin: 10px 10px 10px 10px;
+			background-color: #7621E0;
+			border: none;
+			
+		}
+
+		::placeholder {
+  			color: white;
+		}
+
+		textarea {
+			width: 100%;
+			padding: 12px;
+			height: 150px;
+			margin: 11px 10px 8px 7px;
+			background-color: #7621E0;
+			border: none;
+			
+		}
+
+		button {
+			width: 100%;
+			padding: 10px;
+			margin: 10px;
+			margin: 11px 10px 8px 7px;
+			background-color: lightgreen;
+			border: none;
+			
+		}
+	</style>
+</head>
+<body>
+
+	<div class="container">
+		<div class="row">
+			<input type="text" name="" placeholder="Full Name">
+		</div>
+		<div class="row">
+			<div class="col">
+				<input type="text" name="" placeholder="Company" style="width: 95%;">
+			</div>
+			<div class="col">
+				<input type="text" name="" placeholder="Location">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<input type="text" name="" placeholder="Email" style="width: 95%;">
+			</div>
+			<div class="col">
+				<input type="text" name="" placeholder="Phone">
+			</div>
+		</div>
+		<div class="row">
+			<textarea placeholder="Message"></textarea>
+		</div>
+		<div class="row">
+			<button>SUBMIT</button>
+		</div>
+	</div>
+
+</body>
+</html>
