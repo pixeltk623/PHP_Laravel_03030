@@ -2,6 +2,9 @@
 
 	/*Write a PHP program to enter marks of five subjects Physics, Chemistry, Biology, Mathematics and Computer, calculate percentage and grade by if else Write a PHP program for find ‘tdursday’ in week using switch function.*/
 
+	$day =  date("l");
+	die;
+
 	if(isset($_POST['submit'])){
 		
 		$Physics=$_POST['Physics'];
@@ -54,47 +57,48 @@
 	<title>Assignment 1</title>
 </head>
 <body>
+	<div class="container mt-4">
 	<div>
 		<form method="post">
-			<div class="row g-3 align-items-center">
-			  <div class="col-sm-2">
+			<div class="form-group">
+			 
 			    <label class="form-label">Physics :</label>
-			  </div>
-			  <div class="col-sm-2">
+			 
+			 
 			    <input type="text" class="form-control" name="Physics" required>
-			  </div>
+			  
 			</div>
-			<div class="row g-3 align-items-center">
-			  <div class="col-sm-2">
+			<div class="form-group">
+			 
 			    <label class="form-label">Chemistry :</label>
-			  </div>
-			  <div class="col-sm-2">
+			 
+			 
 			    <input type="text" class="form-control" name="Chemistry" required>
-			  </div>
+			
 			</div>
-			<div class="row g-3 align-items-center">
-			  <div class="col-sm-2">
+			<div class="form-group">
+			 
 			    <label class="form-label">Biology :</label>
-			  </div>
-			  <div class="col-sm-2">
+			  
+			 
 			    <input type="text" class="form-control" name="Biology" required>
-			  </div>
+			 
 			</div>
-			<div class="row g-3 align-items-center">
-			  <div class="col-sm-2">
+			<div class="form-group">
+			 
 			    <label class="form-label">Mathematics :</label>
-			  </div>
-			  <div class="col-sm-2">
+			  
+			 
 			    <input type="text" class="form-control" name="Mathematics" required>
-			  </div>
+			  
 			</div>
-			<div class="row g-3 align-items-center">
-			  <div class="col-sm-2">
+			<div class="form-group">
+			 
 			    <label class="form-label">Computer :</label>
-			  </div>
-			  <div class="col-sm-2">
+			
+			 
 			    <input type="text" class="form-control" name="Computer" required>
-			  </div>
+			 
 			</div>
 			<div>
 				<button class="btn btn-primary" type="submit" name="submit" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -105,8 +109,12 @@
 
 	</div>
 	<br><br>
+	<?php
+		if (isset($grade)) {
+			?>
 
-	<div class="collapse" id="collapseExample">
+
+	<div>
 		<div class="card card-body">
 		<table class="table caption-top table-bordered border-primary">
 			<tr>
@@ -164,7 +172,11 @@
 		</table>
 		</div>
 	</div>
-	
+
+	<?php
+		}
+	?>
+	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
 </body>
 </html>
