@@ -12,7 +12,7 @@
 
 		$total=$Physics+$Chemistry+$Biology+$Mathematics+$Computer;
 
-		$Percentage=($total/500)*100;
+		$Percentage=(($total/500)*100)."%";
 
 		if($Percentage>90)
 		{
@@ -39,7 +39,6 @@
 		else{
 			$grade="F";
 		}
-
 	}
 
 ?>
