@@ -98,9 +98,8 @@
 			  </div>
 			</div>
 			<div>
-				<input type="submit" name="submit" class="btn btn-primary" >
-				<button class="btn btn-primary" type="button" id="submit" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-				    Result
+				<button class="btn btn-primary" type="submit" name="submit" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+				    Submit
 				</button>
 			</div>
 		</form>
