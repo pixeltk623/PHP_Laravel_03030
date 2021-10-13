@@ -101,7 +101,7 @@
 			 
 			</div>
 			<div>
-				<button class="btn btn-primary" type="submit" name="submit" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+				<button class="btn btn-primary" type="submit" name="submit">
 				    Submit
 				</button>
 			</div>
