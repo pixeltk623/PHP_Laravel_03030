@@ -68,18 +68,42 @@
 	// }
 
 	// echo $sum;
+	
+
+	// 123
+
+	// 1 + 2 + 3
+
+
+	// 5
+	// 5*4*3*2*1 = 120
+
 
 
 	
-	for ($i=2000; $i <= 2010; $i++) { 
+	// for ($i=2000; $i <= 2010; $i++) { 
 
-		if ($i%4==0) {
-			echo $i;
-			echo "<br>";
-		}
-		// echo $i;
+	// 	if ($i%4==0) {
+	// 		echo $i;
+	// 		echo "<br>";
+	// 	}
+	// 	// echo $i;
 
 		
+	// }
+
+	$number = 4;
+
+	$fact = 1;
+	for ($i=$number; $i > 0; $i--) { 
+		
+		$fact = $fact * $i;
+		// echo $i;
+		// echo "<br>";
 	}
+
+	echo $fact;
+
+
 
 ?>
