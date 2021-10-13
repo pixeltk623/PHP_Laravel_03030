@@ -5,17 +5,14 @@
 
 	if(isset($_POST['submit'])){
 
-		$start_year=date($_POST['Start']);
-		$end_year=date($_POST['End']);
+		$start_year=$_POST['Start'];
+		$end_year=$_POST['End'];
 
-		$year="";
-
+		$year="";		
 		for($i=$start_year;$i<=$end_year;$i++)
 		{
-			echo $i;
-			if ((date("L",$i))==1) {
-				echo $i;
-				$year=$year.", ".$i;
+			if ($i%4==0) {
+				$year=$year.$i.", ";
 			}
 		}
 
