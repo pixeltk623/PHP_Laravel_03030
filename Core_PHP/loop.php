@@ -92,17 +92,42 @@
 		
 	// }
 
-	$number = 4;
+	// $number = 4;
 
-	$fact = 1;
-	for ($i=$number; $i > 0; $i--) { 
+	// $fact = 1;
+	// for ($i=$number; $i > 0; $i--) { 
 		
-		$fact = $fact * $i;
-		// echo $i;
-		// echo "<br>";
-	}
+	// 	$fact = $fact * $i;
+	// 	// echo $i;
+	// 	// echo "<br>";
+	// }
 
-	echo $fact;
+	// echo $fact;
+
+
+
+	
+	// for ($i=1; $i <= 10; $i++) { 
+
+	// 	if ($i==5) {
+	// 		break;
+	// 	}
+
+	// 	echo $i;
+	// 	echo "<br>";
+	// }
+
+
+
+	// for ($i=1; $i <= 10; $i++) { 
+
+	// 	if ($i==5 || $i==8) {
+	// 		continue;
+	// 	}
+
+	// 	echo $i;
+	// 	echo "<br>";
+	// }
 
 
 
