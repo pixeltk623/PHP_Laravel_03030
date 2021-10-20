@@ -41,9 +41,9 @@
 					for($j=1; $j<=$n; $j++)
 					{
 						if($i==1||$i==$n||$j==1||$j==$n){
-							echo "* ";
+							echo "*&nbsp;";
 						}else{
-							echo "  ";
+							echo "&nbsp;";
 						}
 					}
 					echo "<br>";

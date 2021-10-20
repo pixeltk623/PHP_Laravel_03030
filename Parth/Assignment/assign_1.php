@@ -2,9 +2,6 @@
 
 	/*Write a PHP program to enter marks of five subjects Physics, Chemistry, Biology, Mathematics and Computer, calculate percentage and grade by if else Write a PHP program for find ‘tdursday’ in week using switch function.*/
 
-	$day =  date("l");
-	die;
-
 	if(isset($_POST['submit'])){
 		
 		$Physics=$_POST['Physics'];
