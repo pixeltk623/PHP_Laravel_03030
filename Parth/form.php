@@ -203,14 +203,14 @@
                                 Camping
                             </label>
                         </div>
+                        <?php
+                            if (isset($err8)) {
+                                ?>
+                                <span style="color: red;"><?php echo $err8; ?></span>
+                                <?php 
+                            }
+                        ?>
                     </div>
-                    <?php
-                        if (isset($err8)) {
-                            ?>
-                            <span style="color: red;"><?php echo $err8; ?></span>
-                            <?php 
-                        }
-                    ?>
                 </div>
             </fieldset>
             <div class="form-group row">
