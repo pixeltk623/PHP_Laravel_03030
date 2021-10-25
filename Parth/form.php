@@ -1,65 +1,51 @@
 <?php
 
-    $i=0;
-    $output=0;
-
     if (isset($_POST['submit'])) {
         
-        if($_POST['name']=='') {
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $mobile = $_POST['mobile'];
+        $dob = $_POST['date'];
+        $address = $_POST['address'];
+        $ocupation = $_POST['ocupation'];
+        
+
+        if($name=='') {
             $err1 = "Name Can Not be blank.";
         }
-        elseif($_POST['email']=='') {
+        
+        if($email=='') {
             $err2 = "Email Can Not be blank.";
         }
-        elseif($_POST['mobile']=='') {
+        
+        if($mobile=='') {
             $err3 = "Mobile Can Not be blank.";
         }
-        elseif (isset($_POST['gender'])) {
-            if($_POST['gender']=='') {
-                $err4 = "Gender must be selected.";
-            }else {
-                $output=1;
-            }
+        
+        if (!isset($_POST['gender'])) {
+            $err4 = "Gender must be selected.";
+        }else {
+            $gender = $_POST['gender'];
         }
-        elseif($_POST['date']=='') {
+        
+        if($dob=='') {
             $err5 = "Date must be selected.";
         }
-        elseif($_POST['address']=='') {
+        
+        if($address=='') {
             $err6 = "Address Can Not be blank.";
         }
-        elseif($_POST['ocupation']=='') {
+        
+        if($ocupation=='') {
             $err7 = "Ocupation must be selected.";
         }
-        elseif (isset($_POST['hobby'])) {
-            if($_POST['hobby']=='') {
-                $err8 = "Please select atleast one Hobby";
-            }else {
-                $output=1;
-            }
-        }
-        else {
-            $output=1;
+        
+        if (!isset($_POST['hobby'])) {
+            $err8 = "Please select atleast one Hobby";
+        }else {
+            $hobby = $_POST['hobby'];
         }
         
-        
-        if($output==1) {
-
-            $formdata =array();
-            
-            $formdata[$i] =array(
-                "name" => $_POST['name'],
-                "email" => $_POST['email'],
-                "mobile" => $_POST['mobile'],
-                "gender" => $_POST['gender'],
-                "dob" => $_POST['date'],
-                "address" => $_POST['address'],
-                "ocupation" => $_POST['ocupation'],
-                "hobby" => $_POST['hobby']
-            );
-
-            $i++;
-        }
-
     }
 
 ?>
@@ -235,13 +221,58 @@
         </form>
         <hr>
         <div>
-            
-                <?php if (isset($formdata)) {
-                    echo "<pre>";
-                    print_r($formdata);
-                }
-
-                ?>
+            <table class="table caption-top table-bordered border-primary">
+            <tr>
+                <td>Name</td>
+                <td><?php if(isset($name)){
+                    echo $name;
+                } ?></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><?php if(isset($email)){
+                    echo $email;
+                } ?></td>
+            </tr>
+            <tr>
+                <td>Mobile</td>
+                <td><?php if(isset($mobile)){
+                    echo $mobile;
+                } ?></td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td><?php if(isset($gender)){
+                    echo $gender;
+                } ?></td>
+            </tr>
+            <tr>
+                <td>Date Of Birth</td>
+                <td><?php if(isset($dob)){
+                    echo $dob;
+                } ?></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td><?php if(isset($address)){
+                    echo $address;
+                } ?></td>
+            </tr>
+            <tr>
+                <td>Ocupation</td>
+                <td><?php if(isset($ocupation)){
+                    echo $ocupation;
+                } ?></td>
+            </tr>
+            <tr>
+                <td>Hobby</td>
+                <td><?php if(isset($hobby)){
+                    foreach ($hobby as $key => $value) {
+                        echo $value."  ";
+                    }
+                } ?></td>
+            </tr>
+        </table>
         </div>
 
 
