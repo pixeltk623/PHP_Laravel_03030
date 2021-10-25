@@ -1,4 +1,14 @@
 <?php
+        
+    
+    $email = "s@.com";
+
+//     if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
+//      echo "valid";
+// } else {
+//     echo "Invalid";
+// }
+
 
     if (isset($_POST['submit'])) {
         
@@ -12,38 +22,52 @@
 
         if($name=='') {
             $err1 = "Name Can Not be blank.";
+        } else {
+            $errN = true;
         }
         
         if($email=='') {
             $err2 = "Email Can Not be blank.";
+        } else {
+            $errE = true;
         }
         
         if($mobile=='') {
             $err3 = "Mobile Can Not be blank.";
+        } else {
+            $errM = true;
         }
         
         if (!isset($_POST['gender'])) {
             $err4 = "Gender must be selected.";
         }else {
             $gender = $_POST['gender'];
-        }
+            $errG = true;
+        } 
         
         if($dob=='') {
             $err5 = "Date must be selected.";
+        } else {
+            $errD = true;
         }
         
         if($address=='') {
             $err6 = "Address Can Not be blank.";
+        } else {
+            $errA = true;
         }
         
         if($ocupation=='') {
             $err7 = "Ocupation must be selected.";
+        } else {
+            $errO = true;
         }
         
         if (!isset($_POST['hobby'])) {
             $err8 = "Please select atleast one Hobby";
         }else {
             $hobby = $_POST['hobby'];
+            $errH = true;
         }
         
     }
@@ -137,7 +161,7 @@
                     <?php
                         if (isset($err7)) {
                             ?>
-                            <span style="color: red;"><?php echo $err7; ?></span>
+                            <span style="color: red;"><?php echo $err5; ?></span>
                             <?php 
                         }
                     ?>
@@ -150,7 +174,7 @@
                 <?php
                     if (isset($err7)) {
                         ?>
-                        <span style="color: red;"><?php echo $err7; ?></span>
+                        <span style="color: red;"><?php echo $err6; ?></span>
                         <?php 
                     }
                 ?>
@@ -221,7 +245,13 @@
         </form>
         <hr>
         <div>
-            <table class="table caption-top table-bordered border-primary">
+
+            <?php 
+
+                if (isset($errN) && isset($errE) && isset($errM) && isset($errG) && isset($errA) && isset($errD) && isset($errO) && isset($errH)) {
+                    ?>
+
+                        <table class="table caption-top table-bordered border-primary">
             <tr>
                 <td>Name</td>
                 <td><?php if(isset($name)){
@@ -267,12 +297,17 @@
             <tr>
                 <td>Hobby</td>
                 <td><?php if(isset($hobby)){
-                    foreach ($hobby as $key => $value) {
-                        echo $value."  ";
-                    }
+                    echo implode(", ", $hobby);
                 } ?></td>
             </tr>
         </table>
+
+                    <?php 
+                }
+
+            ?>
+
+            
         </div>
 
 
