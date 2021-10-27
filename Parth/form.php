@@ -1,15 +1,6 @@
 <?php
         
     
-    $email = "s@.com";
-
-//     if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
-//      echo "valid";
-// } else {
-//     echo "Invalid";
-// }
-
-
     if (isset($_POST['submit'])) {
         
         $name = $_POST['name'];
@@ -28,12 +19,16 @@
         
         if($email=='') {
             $err2 = "Email Can Not be blank.";
+        } elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $err2 = "Please write a proper email.";
         } else {
             $errE = true;
         }
         
         if($mobile=='') {
             $err3 = "Mobile Can Not be blank.";
+        } elseif (strlen($mobile)!=10) {
+            $err3 = "Please write a proper mobile number.";
         } else {
             $errM = true;
         }
@@ -64,10 +59,13 @@
         }
         
         if (!isset($_POST['hobby'])) {
-            $err8 = "Please select atleast one Hobby";
+            $err8 = "Please select Hobbies";
         }else {
             $hobby = $_POST['hobby'];
             $errH = true;
+            if (sizeof($hobby)<2) {
+                $err8 = "Please select atleast two Hobby";
+            }
         }
         
     }
@@ -157,7 +155,7 @@
             <div class="form-group row">
                 <label for="inputdate" class="col-sm-2 col-form-label">Date Of Birth</label>
                 <div class="col-sm-10">
-                    <input type="date" class="form-control" name="date" id="inputdate" >
+                    <input type="date" class="form-control" name="date" id="inputdate" max="<?= date('Y-m-d'); ?>">
                     <?php
                         if (isset($err7)) {
                             ?>
