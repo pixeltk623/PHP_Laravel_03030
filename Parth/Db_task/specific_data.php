@@ -111,6 +111,7 @@
     			<div class="form-group row ">
     				<h3>Select Table :</h3>
 	    			<div class="col-sm-4">
+
 	    				<select class="form-control" id="inputtable" name="tablename" required>
 	    					<option value="">Select Table</option>
 	    					<?php
@@ -126,9 +127,10 @@
     		</form>
     		<br>
     		<form method="post">
-
+	    				<input type="hidden" name="" value="Agent">
     			<?php 
     				if (isset($_POST['submit'])) {
+    					echo "Hello";
     					foreach ($finalDataC as $key => $valuec) {
     			?>
     			<input type="hidden" name="tablename" value="<?php echo $table; ?>">
