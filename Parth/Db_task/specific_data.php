@@ -26,20 +26,37 @@
 		while($response[] = mysqli_fetch_assoc($res)) {}
 		$finalData = array_filter($response);
 
-		if (isset($_POST['show'])) {
-			echo "<pre>";
-    		print_r($_POST);
+	}
+	if (isset($_POST['show'])) {
+
+    	$table=$_POST['tablename'];
+
+		$queryC = "SHOW COLUMNS FROM $table";
+
+		$resC = mysqli_query($conn, $queryC);
+		$responseC = array();
+		while($responseC[] = mysqli_fetch_assoc($resC)) {}
+		$finalDataC = array_filter($responseC);
+
+		$query = "SELECT * FROM $table";
+
+		$res = mysqli_query($conn, $query);
+		$response = array();
+		while($response[] = mysqli_fetch_assoc($res)) {}
+		$finalData = array_filter($response);
+
+		$condition="where ";
 			foreach ($finalDataC as $key => $valuec) {
 
-				$condition="where ";
-				if (isset($_POST[$valuec['Field']])) {
+				if (isset($_POST[$valuec['Field']]) && $_POST[$valuec['Field']]!="") {
 					
-					$condition=$condition.$valuec['Field']." = ".$_POST[$valuec['Field']];
+					$condition=$condition.$valuec['Field']." = '".rtrim($_POST[$valuec['Field']])."' AND ";
 				}
 			}
+			$condition=substr($condition, 0, -4);
 
 			if (isset($condition)) {
-				$query = "SELECT * FROM $table".$condition;
+				$query = "SELECT * FROM $table ".$condition;
 
 				$resF = mysqli_query($conn, $query);
 				$responseF = array();
@@ -48,8 +65,6 @@
 			}
 
 		}
-
-	}
 	
 ?>
 
@@ -116,12 +131,13 @@
     				if (isset($_POST['submit'])) {
     					foreach ($finalDataC as $key => $valuec) {
     			?>
+    			<input type="hidden" name="tablename" value="<?php echo $table; ?>">
     			<div class="form-group row ">
     				
     				<label class="form-label"><?php echo $valuec['Field']; ?></label>
 	    			<div class="col-sm-4">
 	    				<select class="form-control" id="inputtable" name=<?php echo $valuec['Field']; ?>>
-	    				<option>Select</option>
+	    				<option value="">Select</option>
 	    				<?php
 					    	foreach ($finalData as $key => $value) {
 					    ?>	
@@ -136,7 +152,7 @@
     		</form>
     		<br>
     	</div>
-    	<?php if (isset($finalData)) { ?>
+    	<?php if (isset($finalData) || isset($finalDataF)) { ?>
     	<hr>
     	<div class="container">
     	<table class="table table-bordered">
@@ -189,8 +205,5 @@
 	</div>
 	<?php } ?>
     </main>   
-  
-
-
 </body>
 </html>

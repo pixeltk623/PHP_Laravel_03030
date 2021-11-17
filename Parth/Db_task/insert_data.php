@@ -28,7 +28,42 @@
 
 	}
 
-	
+	if (isset($_POST['insert'])) {
+
+		$table=$_POST['tablename'];
+
+		$queryC = "SHOW COLUMNS FROM $table";
+
+		$resC = mysqli_query($conn, $queryC);
+		$responseC = array();
+		while($responseC[] = mysqli_fetch_assoc($resC)) {}
+		$finalDataC = array_filter($responseC);
+
+		$column="";
+		foreach ($finalDataC as $key => $value) {
+			$column=$column.$value['Field'].",";
+		}
+		$column=substr($column, 0, -1);
+
+		$values = $_POST;
+		$values = array_slice($values, 1, -1);
+
+		$values = "'".implode("','", $values)."'";
+		
+		if (isset($values)) {
+			$query = "INSERT INTO $table (".$column.") VALUES (".$values.")";
+			
+			$resF = mysqli_query($conn, $query);
+		}
+
+		$query = "SELECT * FROM $table";
+
+		$res = mysqli_query($conn, $query);
+		$response = array();
+		while($response[] = mysqli_fetch_assoc($res)) {}
+		$finalData = array_filter($response);
+
+	}	
 	
 ?>
 
@@ -56,7 +91,7 @@
           <li><a href="index.php">Home</a></li>
           <li><a href="table_data.php">Table Data</a></li>
           <li><a href="specific_data.php">Specific Table Data</a></li>
-          <li><a class="active"href="insert_data.php">Insert Data</a></li>
+          <li><a class="active" href="insert_data.php">Insert Data</a></li>
           <li><a href="update_data.php">Update Date</a></li>
           <li><a href="delete_data.php">Delete data</a></li>
           <li><a href="multi_table.php">Mutli Table</a></li>
@@ -89,7 +124,8 @@
     			</div>
     		</form>
     		<br>
-    		<form method="get">
+    		<form method="post">
+    			<input type="hidden" name="tablename" value="<?php echo $table; ?>">
 
     			<?php 
     				if (isset($_POST['submit'])) {
@@ -101,9 +137,10 @@
 	    			<div class="col-sm-4">
 	    				<input type="text" name="<?php echo $valuec['Field']; ?>">
 	    			</div>
+	    			<label><?php echo $valuec['Type']; ?></label>
 	    		</div>
 	    		<?php } ?>
-	    			<input type="submit" class="btn btn-primary" name="show" value="Show">
+	    			<input type="submit" class="btn btn-primary" name="insert" value="Insert">
 	    		<?php } ?>
     		</form>
     		<br>
