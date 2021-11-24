@@ -31,18 +31,29 @@
 		$profilePic = $_FILES['profilePic'];
 
 		$ext =  pathinfo($profilePic['name'], PATHINFO_EXTENSION);
+		$size =  $profilePic['size'];
 
 		if($ext=='jpg') {
 
 		} else {
-			echo "Not Match";
+			$erp= "File extension must be .jpg ";
 		}
 
-		echo "<pre>";
+		if ($size>=102400 && $size<=204800) {
+			
+		} else {
+			$erps= "Size must be 100 kb to 200 kb.";
+		}
 
-		print_r($profilePic);
+		if (file_exists("uploads/".$profilePic['name'])) {
+			$erpe= "File already exists.";
+		}
 
-		die;
+		// echo "<pre>";
+
+		// print_r($profilePic);
+
+		// die;
 
 
 		move_uploaded_file($profilePic['tmp_name'], "uploads/".$profilePic['name']);
@@ -50,7 +61,7 @@
 		
 	
 
-		if($fullName!='' && count($hobby)>0) {
+		if($fullName!='' && count($hobby)>0 && !isset($erp) && !isset($erps)  && !isset($erpe)) {
 
 			$query = "INSERT INTO `employees`(`name`, `email`, `gender`, `hobby`, `city`, `dob`,`profile_pic`) VALUES ('$fullName', '$email','$gender','".implode(",", $hobby)."', '$city', '$dob','".$profilePic['name']."')";
 
@@ -155,8 +166,20 @@
 			</tr>
 			<tr>
 				<th>Profile Pic</th>
-				<td><input type="file" name="profilePic"></td>
-				
+				<td>
+					<input type="file" name="profilePic">
+					<?php 
+						if (isset($erp)) {
+							echo "<span style='color:red;'>".$erp."</span>";
+						}
+						if (isset($erps)) {
+							echo "<span style='color:red;'>".$erps."</span>";
+						}
+						if (isset($erpe)) {
+							echo "<span style='color:red;'>".$erpe."</span>";
+						}
+					?>
+				</td>
 			</tr>
 			<tr>
 				<th colspan="2">
