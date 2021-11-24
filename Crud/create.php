@@ -28,11 +28,31 @@
 		$dob = $_POST['dob'];
 		$city = $_POST['city'];
 
+		$profilePic = $_FILES['profilePic'];
+
+		$ext =  pathinfo($profilePic['name'], PATHINFO_EXTENSION);
+
+		if($ext=='jpg') {
+
+		} else {
+			echo "Not Match";
+		}
+
+		echo "<pre>";
+
+		print_r($profilePic);
+
+		die;
+
+
+		move_uploaded_file($profilePic['tmp_name'], "uploads/".$profilePic['name']);
+
+		
 	
 
 		if($fullName!='' && count($hobby)>0) {
 
-			$query = "INSERT INTO `employees`(`name`, `email`, `gender`, `hobby`, `city`, `dob`) VALUES ('$fullName', '$email','$gender','".implode(",", $hobby)."', '$city', '$dob')";
+			$query = "INSERT INTO `employees`(`name`, `email`, `gender`, `hobby`, `city`, `dob`,`profile_pic`) VALUES ('$fullName', '$email','$gender','".implode(",", $hobby)."', '$city', '$dob','".$profilePic['name']."')";
 
 			$result = mysqli_query($conn, $query);
 
@@ -82,7 +102,7 @@
 			}
 		?>
 			
-	<form method="post">
+	<form method="post" enctype="multipart/form-data">
 		<table width="50%" style="border-collapse: collapse;" border="1">
 			<tr>
 				<th>Full Name</th>
@@ -132,6 +152,11 @@
 					<input type="checkbox" name="hobby[]" value="Baseball">Baseball
 					<input type="checkbox" name="hobby[]" value="Badmintion">Badmintion
 				</td>
+			</tr>
+			<tr>
+				<th>Profile Pic</th>
+				<td><input type="file" name="profilePic"></td>
+				
 			</tr>
 			<tr>
 				<th colspan="2">

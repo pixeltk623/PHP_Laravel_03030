@@ -38,8 +38,7 @@
                     <th>Sr.No</th>
                     <th>Full Name</th>
                     <th>Email</th>
-                    <th>Gender</th>
-                    
+                    <th>Profile Pic</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -60,11 +59,24 @@
                     <td><?php echo ++$key; ?></td>
                     <td><?php echo $value['name']; ?></td>
                     <td><?php echo $value['email']; ?></td>
-                    <td><?php echo $value['gender']; ?></td>
+                    <td>
+                        <?php
+                            if ($value['profile_pic']!='') {
+                                ?>
+                                <img src="uploads/<?php echo $value['profile_pic']; ?>" width="100" height="100">
+                                <?php
+                            } else {
+                                ?>
+                                No Pic Found
+                                <?php
+                            }
+                        ?>
+                        
+                    </td>
                     
                     <td>
                         <a href="" class="btn btn-warning">Show</a>
-                        <a href="" class="btn btn-secondary">Edit</a>
+                        <a href="edit.php?id=<?php echo $value['id']; ?>" class="btn btn-secondary">Edit</a>
                         <a href="delete.php?id=<?php echo $value['id']; ?>" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
