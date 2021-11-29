@@ -47,6 +47,7 @@
 		<input type="file" name="productImage[]" multiple>
 		<br><br>
 		<input type="submit" name="submit">
+		<a href="multifile_show.php">Show</a>
 	</form>
 
 </body>
