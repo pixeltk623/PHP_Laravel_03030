@@ -8,20 +8,23 @@
 
 		mysqli_query($conn, $sql);
 
-		echo $last_id = mysqli_insert_id($conn);
-
-		die;
-
+		$last_id = mysqli_insert_id($conn);
 
 		// echo "<pre>";
 
 		// print_r($productImage);
 
-		foreach ($productImage['name'] as $value) {
-			
-			$query = "INSERT INTO product_images (productImage, product_id) VALUES ('$value', '$last_id')";
+		foreach ($productImage['name'] as $key => $value) {
 
+			$ext = strtolower(pathinfo($value, PATHINFO_EXTENSION));
+			$filename=$last_id."_".++$key.".".$ext;
+			$query = "INSERT INTO product_images (productImage, product_id) VALUES ('$filename', '$last_id')";
+			$res=mysqli_query($conn, $query);
 
+			if ($res && !file_exists("uploads/".$filename)) {
+				
+				move_uploaded_file($productImage['tmp_name'][--$key], "uploads/".$filename);
+			}
 		}
 
 
