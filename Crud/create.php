@@ -30,16 +30,17 @@
 
 		$profilePic = $_FILES['profilePic'];
 
-		$ext =  pathinfo($profilePic['name'], PATHINFO_EXTENSION);
+		$ext = strtolower(pathinfo($profilePic['name'], PATHINFO_EXTENSION));
 		$size =  $profilePic['size'];
 
-		if($ext=='jpg') {
+		if($ext=='jpg' || $ext=='png' || $ext=='jpeg') {
 
 		} else {
-			$erp= "File extension must be .jpg ";
+			$erp= "File extension must be. jpg and png";
 		}
-
-		if ($size>=102400 && $size<=204800) {
+		$size = number_format($size/1024, 2);
+	
+		if ($size<=200) {
 			
 		} else {
 			$erps= "Size must be 100 kb to 200 kb.";
@@ -53,15 +54,11 @@
 
 		// print_r($profilePic);
 
-		// die;
-
-
-		move_uploaded_file($profilePic['tmp_name'], "uploads/".$profilePic['name']);
-
-		
+		// die;		
 	
 
 		if($fullName!='' && count($hobby)>0 && !isset($erp) && !isset($erps)  && !isset($erpe)) {
+			move_uploaded_file($profilePic['tmp_name'], "uploads/".$profilePic['name']);
 
 			$query = "INSERT INTO `employees`(`name`, `email`, `gender`, `hobby`, `city`, `dob`,`profile_pic`) VALUES ('$fullName', '$email','$gender','".implode(",", $hobby)."', '$city', '$dob','".$profilePic['name']."')";
 
