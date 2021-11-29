@@ -38,6 +38,7 @@
 		} else {
 			$erp= "File extension must be .jpg ";
 		}
+		echo $size=number_format($size/1024, 2);
 
 		if ($size>=102400 && $size<=204800) {
 			
@@ -55,13 +56,9 @@
 
 		// die;
 
-
-		move_uploaded_file($profilePic['tmp_name'], "uploads/".$profilePic['name']);
-
-		
-	
-
 		if($fullName!='' && count($hobby)>0 && !isset($erp) && !isset($erps)  && !isset($erpe)) {
+
+			move_uploaded_file($profilePic['tmp_name'], "uploads/".$profilePic['name']);
 
 			$query = "INSERT INTO `employees`(`name`, `email`, `gender`, `hobby`, `city`, `dob`,`profile_pic`) VALUES ('$fullName', '$email','$gender','".implode(",", $hobby)."', '$city', '$dob','".$profilePic['name']."')";
 
