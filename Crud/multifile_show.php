@@ -1,7 +1,7 @@
 <?php 
     include_once "config.php";
 
-    $query = "SELECT a.name,b.productImage,b.product_id FROM products AS a JOIN product_images AS b WHERE a.id=b.product_id";
+    $query = "SELECT a.name,GROUP_CONCAT(b.productImage SEPARATOR ',') AS productImage,b.product_id FROM products AS a JOIN product_images AS b WHERE a.id=b.product_id GROUP BY b.product_id";
 
     $res = mysqli_query($conn, $query);
     $response = array();
@@ -61,11 +61,13 @@
                     <td><?php echo $value['name']; ?></td>
                     <td>
                         <?php
-                            if ($value['productImage']!='') {
+                            $productImage = explode(",", $value['productImage']);
+                            if (sizeof($productImage)>0) {
+                                foreach ($productImage as $key => $valuei) {
                                 ?>
-                                <img src="uploads/<?php echo $value['productImage']; ?>" width="100" height="100">
+                                <img src="uploads/<?php echo $valuei; ?>" width="100" height="100" style='padding:5px;'>
                                 <?php
-                            } else {
+                            }} else {
                                 ?>
                                 No Pic Found
                                 <?php
@@ -75,8 +77,8 @@
                     <td><?php echo $value['product_id']; ?></td>
                     <td>
                         <a href="" class="btn btn-warning">Show</a>
-                        <a href="edit.php?id=<?php echo $value['id']; ?>" class="btn btn-secondary">Edit</a>
-                        <a href="delete.php?id=<?php echo $value['id']; ?>" class="btn btn-danger">Delete</a>
+                        <a href="edit.php" class="btn btn-secondary">Edit</a>
+                        <a href="delete.php" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
                 <?php

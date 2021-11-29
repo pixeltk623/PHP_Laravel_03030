@@ -18,12 +18,32 @@
 
 			$ext = strtolower(pathinfo($value, PATHINFO_EXTENSION));
 			$filename=$last_id."_".++$key.".".$ext;
-			$query = "INSERT INTO product_images (productImage, product_id) VALUES ('$filename', '$last_id')";
-			$res=mysqli_query($conn, $query);
+			
+			if($ext=='jpg' || $ext=='png' || $ext=='jpeg') {
 
-			if ($res && !file_exists("uploads/".$filename)) {
-				
-				move_uploaded_file($productImage['tmp_name'][--$key], "uploads/".$filename);
+			} else {
+				$erp= "File extension must be. jpg and png";
+			}
+
+			$size = number_format($productImage['size'][--$key]/1024, 2);
+		
+			if ($size<=200) {				
+
+			} else {
+				$erps= "Size must be less than 200 kb.";
+			}
+			if (file_exists("uploads/".$filename)) {
+				$erpe= "File already exists.";
+			}
+
+			if (!isset($erp) && !isset($erps) && !isset($erpe)) {
+
+				$query = "INSERT INTO product_images (productImage, product_id) VALUES ('$filename', '$last_id')";
+				$res=mysqli_query($conn, $query);
+
+				if ($res) {
+					move_uploaded_file($productImage['tmp_name'][$key], "uploads/".$filename);
+				}
 			}
 		}
 
