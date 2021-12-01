@@ -1,5 +1,8 @@
 <?php 
 	include_once 'config.php';
+
+	$erf="";
+
 	if (isset($_POST['submit'])) {
 		$name = $_POST['name'];
 		$productImage = $_FILES['productImage'];
@@ -44,6 +47,10 @@
 				if ($res) {
 					move_uploaded_file($productImage['tmp_name'][$key], "uploads/".$filename);
 				}
+			} else {
+
+				$erf=$erf.$value."<br>";
+
 			}
 		}
 
@@ -65,6 +72,20 @@
 		<br><br>
 		<label>Multiple File</label>
 		<input type="file" name="productImage[]" multiple>
+		<?php 
+			if (isset($erp)) {
+				echo "<span style='color:red;'>".$erp."</span>";
+			}
+			if (isset($erps)) {
+				echo "<span style='color:red;'>".$erps."</span>";
+			}
+			if (isset($erpe)) {
+				echo "<span style='color:red;'>".$erpe."</span>";
+			}
+			if ($erf!="") {
+				echo "<br><span style='color:red;'>Problem Files : ".$erf."</span>";
+			}
+		?>
 		<br><br>
 		<input type="submit" name="submit">
 		<a href="multifile_show.php">Show</a>

@@ -28,7 +28,7 @@
 </head>
 <body>
 <div class="container">
-    <h2 style="text-align: center; color: blue;">New Employee Registration</h2>
+    <h2 style="text-align: center; color: blue;">New Products Registration</h2>
     <br>
     <a href="multiple_file.php" class="btn btn-primary">Add New Products</a>
     <br><br>
