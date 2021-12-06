@@ -24,7 +24,7 @@
 				</a>
 
 				<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-					<li><a class="dropdown-item" href="admin.php">User Profile</a></li>
+					<li><a class="dropdown-item" href="profile.php">User Profile</a></li>
 					<li><a class="dropdown-item" href="admin_pass.php">Setting</a></li>
 					<hr>
 					<li><a class="dropdown-item" href="index.php">Logout</a></li>

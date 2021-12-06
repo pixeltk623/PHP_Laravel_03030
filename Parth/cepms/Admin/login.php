@@ -1,7 +1,7 @@
 <?php 
     // echo $_SERVER['DOCUMENT_ROOT']."/cepms/dashboard.php";
     // die;
-    include_once($_SERVER['DOCUMENT_ROOT'].'/cepms/config.php');
+    include_once("../config.php");
 
     if (isset($_POST['login'])) {
         
@@ -24,7 +24,7 @@
             if(sizeof($data)>0){
                 
                 if ($pass==$data['password']) {
-                    header("Location: http://localhost/cepms/dashboard.php");    
+                    header("Location: http://localhost/PHP_Laravel_03030/parth/cepms/dashboard.php");    
                 } else {
                     $erp="Password does not match.";
                 }
