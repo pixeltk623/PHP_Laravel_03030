@@ -39,17 +39,13 @@
 			$erp= "File extension must be. jpg and png";
 		}
 
-		echo $size=number_format($size/1024, 2);
-
-		if ($size>=102400 && $size<=204800) {
 
 		$size = number_format($size/1024, 2);
 	
 		if ($size<=200) {
 
-			
 		} else {
-			$erps= "Size must be 100 kb to 200 kb.";
+			$erps= "Size must be less than 200 kb.";
 		}
 
 		if (file_exists("uploads/".$profilePic['name'])) {
