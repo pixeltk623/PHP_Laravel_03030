@@ -81,7 +81,7 @@
                 </td>
             </tr>
             <tr>
-                <th>Pass Creatiion Date</th>
+                <th>Pass Creation Date</th>
                 <td colspan="3">
                     <?php echo $data['created_at']; ?>
                 </td>
