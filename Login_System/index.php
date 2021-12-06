@@ -18,6 +18,7 @@
 		if($res->num_rows==1) {
 			$_SESSION['is_login'] = true;
 			$_SESSION['admin_id'] = mysqli_fetch_object($res)->id;
+			$_SESSION['s_start'] = time();
 			header("Location: dashboard.php");
 		} else {
 			echo "Wrong Username or password";

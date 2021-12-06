@@ -1,11 +1,15 @@
 <?php
+
+    session_start();
     include_once 'config.php';
-    
+
+    if(isset($_SESSION['is_login']) && isset($_SESSION['admin_id'])) {
+
     if (isset($_POST['update'])) {
 
         
-        $name=$_POST['cn'];
-        $mobile=$_POST['cn'];
+        $name=$_POST['name'];
+        $mobile=$_POST['mobile'];
         $email=$_POST['email'];
 
         if ($name=="") {
@@ -20,7 +24,7 @@
 
         if (!isset($ern) && !isset($ercn) && !isset($ere)) {
         
-            $query = "UPDATE category SET `name`='$name',`updated_at`='".date("Y-m-d H:i:s")."' WHERE id=".$_GET['id'];
+            $query = "UPDATE `admin` SET `admin_name`='$name',`mobile`='$mobile',`email`='$email',`updated_at`='".date("Y-m-d H:i:s")."' WHERE id=".$_SESSION['admin_id'];
             $res = mysqli_query($conn, $query);
 
 
@@ -31,8 +35,8 @@
             
     }
 
-    if (isset($_GET['id'])) {
-        $gid=$_GET['id'];
+    if (isset($_SESSION['admin_id'])) {
+        $gid=$_SESSION['admin_id'];
 
         $query = "SELECT * FROM admin WHERE id=".$gid;
 
@@ -62,7 +66,7 @@
         <hr>
         <form method="post">
             <label class="form-label">Admin Name</label>
-            <input type="text" class="form-control" name="cn" value="<?php echo $data['admin_name']; ?>">
+            <input type="text" class="form-control" name="name" value="<?php echo $data['admin_name']; ?>">
             <?php 
                 if (isset($ern)) {
                 echo "<span style='color:red;'>".$ern."</span>";
@@ -72,7 +76,7 @@
             <input type="text" class="form-control" value="<?php echo $data['user_name']; ?>" readonly>
 
             <label class="form-label">Contact Number</label>
-            <input type="text" class="form-control" name="cn" value="<?php echo $data['mobile']; ?>">
+            <input type="text" class="form-control" name="mobile" value="<?php echo $data['mobile']; ?>">
             <?php 
                 if (isset($ercn)) {
                 echo "<span style='color:red;'>".$ern."</span>";
@@ -103,3 +107,8 @@
 
 </body>
 </html>
+<?php 
+    } else {
+        header("Location: index.php");
+    }
+?>

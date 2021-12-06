@@ -1,12 +1,15 @@
 <?php 
-    // echo $_SERVER['DOCUMENT_ROOT']."/cepms/dashboard.php";
-    // die;
-    include_once("../config.php");
+    session_start();
+    include_once('../config.php');
 
+    if(isset($_SESSION['is_login']) && isset($_SESSION['admin_id'])) {
+        header("Location: http://localhost/cepms/dashboard.php");
+    }
+    
     if (isset($_POST['login'])) {
         
         $email=$_POST['email'];
-        $pass=$_POST['pass'];
+        $pass=md5($_POST['pass']);
 
         if ($email=="") {
             $ere="Email can not be empty.";
@@ -17,20 +20,26 @@
 
 
         if (!isset($ere) && !isset($erp)) {
-            $query = "SELECT * FROM admin WHERE email='".$email."'";
+
+            $query = "SELECT * FROM `admin` WHERE (user_name = '$email' AND password = '$pass') OR (email = '$email' AND password = '$pass')";
 
             $res = mysqli_query($conn, $query);
             $data = mysqli_fetch_assoc($res);
-            if(sizeof($data)>0){
+
+            if($res->num_rows==1) {
+
+                $_SESSION['is_login'] = true;
+                $_SESSION['admin_id'] = $data['id'];
+                $_SESSION['s_start'] = time();
                 
                 if ($pass==$data['password']) {
-                    header("Location: http://localhost/PHP_Laravel_03030/parth/cepms/dashboard.php");    
+                    header("Location: http://localhost/cepms/dashboard.php");    
                 } else {
                     $erp="Password does not match.";
                 }
 
             } else {
-                $ere="Email does not match.";
+                $ere="Does not match.";
             }
         }
         
@@ -63,12 +72,11 @@
     	<div class="container">
     		<div class="card col-sm-4"  style="margin: auto; width: 50%; padding: 10px;">
                 <article class="card-body">
-                    <a href="" class="float-right btn btn-outline-primary">Sign up</a>
                     <h4 class="card-title mb-4 mt-1">Sign in</h4>
                     <form method="post">
                         <div class="form-group">
-                            <label>Your email</label>
-                            <input name="email" class="form-control" placeholder="Email" type="email">
+                            <label>Email / Username</label>
+                            <input name="email" class="form-control" placeholder="Email / Username" type="text">
                             <?php
                                 if (isset($ere)) {
                                 echo "<span style='color:red;'>".$ere."</span>";

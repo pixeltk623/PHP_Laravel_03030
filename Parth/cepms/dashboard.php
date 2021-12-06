@@ -1,5 +1,8 @@
 <?php 
+    session_start();
 	include_once 'config.php';
+
+    if(isset($_SESSION['is_login']) && isset($_SESSION['admin_id'])) {
 
     $q1 = "SELECT COUNT(name) AS category FROM `category`";
     $res1 = mysqli_query($conn, $q1);
@@ -106,3 +109,8 @@
   
 </body>
 </html>
+<?php 
+    } else {
+        header("Location: index.php");
+    }
+?>

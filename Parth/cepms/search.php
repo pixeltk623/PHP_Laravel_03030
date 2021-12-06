@@ -1,5 +1,10 @@
 <?php
+    
+    session_start();
     include_once 'config.php';
+
+    if(isset($_SESSION['is_login']) && isset($_SESSION['admin_id'])) {
+
 
     if (isset($_POST['search'])) {
 
@@ -97,3 +102,8 @@
 
 </body>
 </html>
+<?php 
+    } else {
+        header("Location: index.php");
+    }
+?>
