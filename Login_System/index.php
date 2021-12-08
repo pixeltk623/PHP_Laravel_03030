@@ -1,6 +1,10 @@
 <?php 
 	session_start();
+
 	$conn = mysqli_connect("localhost","root","","cepms");
+
+
+	
 
 	if(isset($_SESSION['is_login']) && isset($_SESSION['admin_id'])) { 
 		header("Location: dashboard.php");
@@ -18,7 +22,11 @@
 		if($res->num_rows==1) {
 			$_SESSION['is_login'] = true;
 			$_SESSION['admin_id'] = mysqli_fetch_object($res)->id;
+<<<<<<< Updated upstream
 			$_SESSION['s_start'] = time();
+=======
+			$_SESSION['time'] = time();
+>>>>>>> Stashed changes
 			header("Location: dashboard.php");
 		} else {
 			echo "Wrong Username or password";

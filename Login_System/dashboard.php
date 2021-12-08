@@ -1,5 +1,32 @@
 <?php 
 	session_start();
+
+	// echo "<pre>";
+
+	// print_r($_SESSION);
+	
+	echo $_SESSION['time'];
+
+	echo "<br>";
+
+	echo time();
+	echo "<br>";
+
+	echo $diff =  time() - $_SESSION['time'];
+
+	if($diff>10) {
+
+		session_destroy();
+
+		header("Location: index.php");
+
+	} else {
+		$_SESSION['time'] = time();
+	}
+
+	// die;
+
+
 	// echo "<pre>";
 	// print_r($_SESSION);
 
