@@ -23,6 +23,8 @@
             $response = array();
             while($response[] = mysqli_fetch_assoc($res)) {}
             $finalData = array_filter($response);
+
+            $message="Pass Report from ".$fd." to ".$td;
         }
     }
     
@@ -43,8 +45,10 @@
 
     <div class="container">
         <br>
-        <h1>Manage Pass</h1>
+        <h1>Between Dates Reports Of Pass</h1>
         <hr>
+        <h4 class="text-center text-primary"><?php echo $message; ?></h4>
+        <br>
         <table class="table table-bordered">
             <tr>
                 <th>Sr. No.</th>
@@ -68,7 +72,7 @@
             ?>
             <tr>
                 <td><?php echo ++$key; ?></td>
-                <td><?php echo $value['id']; ?></td>
+                <td><?php echo $value['pass_number']; ?></td>
                 <td><?php echo $value['name']; ?></td>
                 <td><?php echo $value['mobile']; ?></td>
                 <td><?php echo $value['email']; ?></td>

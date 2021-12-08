@@ -16,7 +16,7 @@
 
         if (!isset($err)) {
         
-            $query = "SELECT * FROM pass WHERE pass_number='".$id."'";
+            $query = "SELECT * FROM pass WHERE pass_number='$id' OR mobile = '$id'";
 
             $res = mysqli_query($conn, $query);
             $data = mysqli_fetch_assoc($res);    
@@ -79,7 +79,7 @@
             ?>
             <tr>
                 <td>1</td>
-                <td><?php echo $data['id']; ?></td>
+                <td><?php echo $data['pass_number']; ?></td>
                 <td><?php echo $data['name']; ?></td>
                 <td><?php echo $data['mobile']; ?></td>
                 <td><?php echo $data['email']; ?></td>
