@@ -14,7 +14,8 @@
    <div class="container mt-3">
    		<h1 class="text-center text-primary">Crud In MVC</h1>
       <a href="create" class="btn btn-primary mb-3">Add New User</a>
-   		<table class="table">
+      <br>
+   		<table class="table table-bordered">
 			  <thead>
 			    <tr>
 			      <th scope="col">#</th>
@@ -25,6 +26,11 @@
 			    </tr>
 			  </thead>
 			  <tbody>
+          <?php if (sizeof($result)<1) { ?>
+            <tr>
+              <td colspan="5" class="text-center text-danger">No Data</td>
+            </tr>
+          <?php } ?>
 			    <?php 
 			    	foreach ($result as $key => $value) {
               ?>
@@ -35,8 +41,8 @@
                   <td><?php echo $value['created_at']; ?></td>
                   <td>
                     <a href="" class="btn btn-primary">Show</a>
-                    <a href="" class="btn btn-secondary">Edit</a>
-                    <a href="" class="btn btn-danger">Delete</a>
+                    <a href="update?id=<?php echo $value['id']; ?>" class="btn btn-secondary">Edit</a>
+                    <a href="delete?id=<?php echo $value['id']; ?>" class="btn btn-danger">Delete</a>
                   </td>
                 </tr>
               <?php
