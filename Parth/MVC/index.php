@@ -1,6 +1,4 @@
 <?php 
-	include_once "controler/CrudControler.php";
-
-	
+	include_once "Controller/CrudController.php";	
 
 ?>

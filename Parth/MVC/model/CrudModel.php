@@ -5,7 +5,7 @@
 		private $server="localhost";
 		private $username="root";
 		private $password="";
-		private $database="mvc";
+		private $database="php_03030";
 		public $conn;
 
 		public function __construct() {
@@ -23,31 +23,28 @@
 			return $this->conn;
 		}
 
-		public function show($id="") {
-
-			if ($id!="") {
-				$query="SELECT * FROM `profile` WHERE id='$id'";
-				$res=mysqli_query($conn,$query);
-				
-				$showData = mysqli_fetch_assoc($res);
+		public function getAllData($table) {
+				$this->query="SELECT * FROM $table";
+				$this->res=mysqli_query($this->conn,$this->query);
+				$this->response=array();
+				while($this->response[] = mysqli_fetch_assoc($this->res)) {}
 			    
-			    $showData = array_filter($response);
-			} else {
-				$query="SELECT * FROM `profile`";
-				$res=mysqli_query($conn,$query);
-				$response=array();
-				while($response[] = mysqli_fetch_assoc($res)) {}
-			    
-			    $showData = array_filter($response);	
-			}
+			    $this->showData = array_filter($this->response);	
 			
-		    return $showData;
+		    return $this->showData;
 		}
 
-		public function insert($name,$email,$mobile) {
+		public function insert($data, $table) {
 
-			$query="INSERT INTO `profile`(`name`, `email`, `mobile`) VALUES ('$name','$email','$mobile')";
-			$res=mysqli_query($conn,$query);
+			$colName = implode(",",array_keys($data));
+
+			$values = "'".implode("','", array_values($data))."'"; 
+
+			$query="INSERT INTO $table ($colName) VALUES ($values)";
+
+			$res=mysqli_query($this->conn,$query);
+
+			return $res;
 		}
 
 		public function update($id,$name,$email,$mobile) {
@@ -56,10 +53,10 @@
 			$res=mysqli_query($conn,$query);
 		}
 		
-		public function delete($id) {
+		public function delete($table, $id) {
 
-			$query="DELETE FROM `profile` WHERE id='$id'";
-			$res=mysqli_query($conn,$query);
+			$query="DELETE FROM $table WHERE id='$id'";
+			return $res=mysqli_query($this->conn,$query);
 		}
 
 	}
