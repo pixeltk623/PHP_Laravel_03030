@@ -1,3 +1,6 @@
+<?php
+  if ($_GET['id']) {
+    ?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -17,22 +20,22 @@
    		<form method="post">
    			
    			<div class="form-group">
-   				<label>Name:</label>
-   				<input type="text" name="name" class="form-control">
+          <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
+   				<label>Name:</label>data
+   				<input type="text" name="name" value="<?php echo $data['name']; ?>" class="form-control">
    			</div>
    			<div class="form-group">
    				<label>Email:</label>
-   				<input type="text" name="email" class="form-control">
+   				<input type="text" name="email" value="<?php echo $data['email']; ?>" class="form-control">
    			</div>
    			<div class="form-group">
-   				<input type="submit" name="submit" class="btn btn-primary">
+   				<input type="submit" name="update" value="Update" class="btn btn-primary">
    			</div>
-
-   		</form>
-      <?php if (isset($message)) {
+        <?php if (isset($message)) {
         echo $message;
       }
       ?>
+   		</form>
    </div>
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
@@ -47,3 +50,4 @@
     -->
   </body>
 </html>
+<?php } ?>

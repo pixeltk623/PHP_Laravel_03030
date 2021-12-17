@@ -24,12 +24,13 @@
 		}
 
 		public function getAllData($table) {
-				$this->query="SELECT * FROM $table";
-				$this->res=mysqli_query($this->conn,$this->query);
-				$this->response=array();
-				while($this->response[] = mysqli_fetch_assoc($this->res)) {}
-			    
-			    $this->showData = array_filter($this->response);	
+			
+			$this->query="SELECT * FROM $table";
+			$this->res=mysqli_query($this->conn,$this->query);
+			$this->response=array();
+			while($this->response[] = mysqli_fetch_assoc($this->res)) {}
+		    
+		    $this->showData = array_filter($this->response);	
 			
 		    return $this->showData;
 		}
@@ -47,13 +48,31 @@
 			return $res;
 		}
 
-		public function update($id,$name,$email,$mobile) {
+		public function action($id,$table) {
+			$this->query="SELECT * FROM $table WHERE id='$id'";
+			$this->res=mysqli_query($this->conn,$this->query);
+			$this->response = mysqli_fetch_assoc($this->res);
+		    
+		    $this->showData = array_filter($this->response);	
+			
+		    return $this->showData;
+		}
 
-			$query="UPDATE `profile` SET `name`='$name',`email`='$email',`mobile`='$mobile' WHERE id='$id'";
-			$res=mysqli_query($conn,$query);
+		public function update($id,$data, $table) {
+
+			$set="";
+			foreach ($data as $key => $value) {
+				$set=$set.$key."='".$value."',";
+			}
+			$set=substr($set, 0, -1);
+
+			$query="UPDATE $table SET $set WHERE id='$id'";
+			$res=mysqli_query($this->conn,$query);
+
+			return $res;
 		}
 		
-		public function delete($table, $id) {
+		public function delete($id,$table) {
 
 			$query="DELETE FROM $table WHERE id='$id'";
 			return $res=mysqli_query($this->conn,$query);
