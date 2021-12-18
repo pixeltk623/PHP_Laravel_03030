@@ -13,45 +13,26 @@
   <body>
    <div class="container mt-3">
    		<h1 class="text-center text-primary">Crud In MVC</h1>
-      <a href="create" class="btn btn-primary mb-3">Add New User</a>
-      <br>
-   		<table class="table table-bordered">
-			  <thead>
-			    <tr>
-			      <th scope="col">#</th>
-			      <th scope="col">Name</th>
-			      <th scope="col">Email</th>
-			      <th scope="col">Created At</th>
-            <th scope="col">Updated At</th>
-             <th scope="col">Action</th>
-			    </tr>
-			  </thead>
-			  <tbody>
-          <?php if (sizeof($result)<1) { ?>
-            <tr>
-              <td colspan="6" class="text-center text-danger">No Data</td>
-            </tr>
-          <?php } ?>
-			    <?php 
-			    	foreach ($result as $key => $value) {
-              ?>
-                <tr>
-                  <td><?php echo ++$key; ?></td>
-                  <td><?php echo $value['name']; ?></td>
-                  <td><?php echo $value['email']; ?></td>
-                  <td><?php echo $value['created_at']; ?></td>
-                  <td><?php echo $value['updated_at']; ?></td>
-                  <td>
-                    <a href="" class="btn btn-primary">Show</a>
-                    <a href="update?id=<?php echo $value['id']; ?>" class="btn btn-secondary">Edit</a>
-                    <a href="delete?id=<?php echo $value['id']; ?>" class="btn btn-danger">Delete</a>
-                  </td>
-                </tr>
-              <?php
-            }
-			    ?>
-			  </tbody>
-			</table>
+      <a href="/PHP_Laravel_03030/parth/MVC/" class="btn btn-warning mb-3">Back To Home</a>
+   		<form method="post">
+   			
+   			<div class="form-group">
+   				<label>Name:</label>
+   				<input type="text" name="name" class="form-control">
+   			</div>
+   			<div class="form-group">
+   				<label>Email:</label>
+   				<input type="text" name="email" class="form-control">
+   			</div>
+   			<div class="form-group">
+   				<input type="submit" name="submit" class="btn btn-primary">
+   			</div>
+
+   		</form>
+      <?php if (isset($message)) {
+        echo $message;
+      }
+      ?>
    </div>
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->

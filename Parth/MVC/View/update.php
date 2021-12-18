@@ -1,6 +1,3 @@
-<?php
-  if ($_GET['id']) {
-    ?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -50,4 +47,3 @@
     -->
   </body>
 </html>
-<?php } ?>

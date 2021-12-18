@@ -5,7 +5,7 @@
 		private $server="localhost";
 		private $username="root";
 		private $password="";
-		private $database="php_03030";
+		private $database="tshirt_cart";
 		public $conn;
 
 		public function __construct() {
@@ -23,12 +23,37 @@
 			return $this->conn;
 		}
 
-		public function getAllData($table) {
-			
-			$this->query="SELECT * FROM $table";
-			$this->res=mysqli_query($this->conn,$this->query);
+		public function getIndexData() {
+			$this->query = "SELECT p.*,pdi.img from products p
+                    INNER JOIN product_images pdi ON pdi.product_id = p.id
+                    WHERE pdi.is_featured = 1";
+            $this->res=mysqli_query($this->conn,$this->query);
 			$this->response=array();
 			while($this->response[] = mysqli_fetch_assoc($this->res)) {}
+		    
+		    $this->showData = array_filter($this->response);	
+			
+		    return $this->showData;
+		}
+
+
+		public function getsp($featured,$productID) {
+			
+			$this->query="SELECT p.*,pdi.img from products p
+            INNER JOIN product_images pdi ON pdi.product_id = p.id WHERE pdi.is_featured =$featured AND p.id =$productID";
+			$this->res=mysqli_query($this->conn,$this->query);
+			$this->response = mysqli_fetch_assoc($this->res);
+		    
+		    $this->showData = array_filter($this->response);	
+			
+		    return $this->showData;
+		}
+		
+		public function getData($id,$table) {
+			
+			$this->query="SELECT * FROM $table WHERE id=$id";
+			$this->res=mysqli_query($this->conn,$this->query);
+			$this->response[] = mysqli_fetch_assoc($this->res);
 		    
 		    $this->showData = array_filter($this->response);	
 			

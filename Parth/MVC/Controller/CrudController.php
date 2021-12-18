@@ -27,6 +27,7 @@
 					
 					case '/update':
 						$data=$this->action($_GET['id'],'mvc');
+						date_default_timezone_set("Asia/Calcutta");
 						if (isset($_POST['update'])) {
 
 							$data = array("name" => $_POST['name'], "email" => $_POST['email']);
