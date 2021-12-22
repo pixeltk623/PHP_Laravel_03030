@@ -23,6 +23,16 @@
 			return $this->conn;
 		}
 
+		public function login($email,$pass) {
+
+			$query = "SELECT * FROM `customer` WHERE (name = '$email' AND password = '$pass') OR (email = '$email' AND password = '$pass')";
+
+            $res = mysqli_query($this->conn, $query);
+            $data = mysqli_fetch_assoc($res);
+
+            return $data;
+		}
+
 		public function getIndexData() {
 			$this->query = "SELECT p.*,pdi.img from products p
                     INNER JOIN product_images pdi ON pdi.product_id = p.id

@@ -79,8 +79,8 @@
         </table>
         <div class="row">
             <div class="col-md-11">
-        <a href="checkout.php">
-          <button class="btn btn-primary btn-lg float-right">Checkout</button>
+        <a href="checkout">
+          <a href="cheakout" class="btn btn-primary btn-lg float-right">Checkout</a>
         </a>
             </div>
         </div>

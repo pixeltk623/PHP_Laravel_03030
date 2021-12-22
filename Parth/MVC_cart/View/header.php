@@ -9,6 +9,8 @@
   
     <title><?php echo (isset($pageTitle)?$pageTitle:'PHP Shopping Cart')?></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 </head>
@@ -28,6 +30,17 @@
                     <a class="nav-link" href="../MVC_cart">Home <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
+            <div class="dropdown ml-5">
+                <a class="btn dropdown-toggle text-light" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                Customer
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li><a class="dropdown-item" href="customer">Customer Profile</a></li>
+                    <li><a class="dropdown-item" href="admin_pass">Setting</a></li>
+                    <hr>
+                    <li><a class="dropdown-item" href="logout">Logout</a></li>
+                </ul>
+            </div>
             <div class="form-inline my-2 my-lg-0">
                 <a href="cart" style="color:#ffffff">
                     <i class="bi bi-cart4" style="font-size:30px;"></i>
