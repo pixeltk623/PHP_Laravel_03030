@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>Ajax | Crud</title>
   </head>
   <body>
     
@@ -199,7 +199,7 @@
             $(document).on("click",".edit", function() {
               
                 $("#submit").val($(this).val());
-               let eid = {id :$(this).val()}
+                let eid = {id :$(this).val()}
             
 
                 $.ajax({
