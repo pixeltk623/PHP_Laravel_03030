@@ -28,21 +28,25 @@
 	<form method="post" id="uploadForm" enctype="multipart/form-data">
 		<label class="form-label">Full Name</label>
 		<input type="text" name="fname" id=name class="form-control" placeholder="Enter Your First Name" >
+		<span id="e1"></span>
 		
 		<label class="form-label">Email</label>
-		<input type="email" class="form-control" name="email" placeholder="Enter Your Last Email" >
+		<input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Last Email" >
+		<span id="e2"></span>
 
 		<label class="form-label">Gender</label><br>
 		<input type="radio" class="form-radio" name="gender" value="Male">Male
 		<input type="radio" class="form-radio" name="gender" value="Female">Female
 		<input type="radio" class="form-radio" name="gender" value="Others">Others
+		<span id="e3"></span>
 
 		<br>
 		<label class="form-label">DOB</label>
-		<input type="date" class="form-control" name="dob" >
+		<input type="date" class="form-control" id="dob" name="dob" >
+		<span id="e4"></span>
 
 		<label class="form-label">City</label>
-		<select name="city" class="form-control">
+		<select name="city" id="city" class="form-control">
 			<option value="">Select</option>
 			<option value="Vadodara">Vadodara</option>
 			<option value="Anand">Anand</option>
@@ -50,16 +54,19 @@
 			<option value="Ahmedabad">Ahmedabad</option>
 			<option value="Surat">Surat</option>
 		</select>
+		<span id="e5"></span>
 
 		<label class="form-label">Hobby</label><br>
-		<input type="checkbox" class="form-checkbox" name="hobby[]" value="Cricket">Cricket
-		<input type="checkbox" class="form-checkbox" name="hobby[]" value="Football">Football
-		<input type="checkbox" class="form-checkbox" name="hobby[]" value="Baseball">Baseball
-		<input type="checkbox" class="form-checkbox" name="hobby[]" value="Badmintion">Badmintion
+		<input type="checkbox" class="form-checkbox" name="hobby" value="Cricket">Cricket
+		<input type="checkbox" class="form-checkbox" name="hobby" value="Football">Football
+		<input type="checkbox" class="form-checkbox" name="hobby" value="Baseball">Baseball
+		<input type="checkbox" class="form-checkbox" name="hobby" value="Badmintion">Badmintion
+		<span id="e6"></span>
 
 		<br>
 		<label class="form-label">Profile Pic</label><br>
-		<input type="file" name="profilePic">
+		<input type="file" id="profilePic" name="profilePic">
+		<span id="e7"></span>
 
 		<br><br>
 		<input type="submit" class="btn btn-primary" name="submit" value="Register">
@@ -73,6 +80,38 @@
 			$("#uploadForm").on("submit",function(event){
 
                 event.preventDefault();
+
+                let fname = $("#name").val();
+                let email = $("#email").val();
+                let g = $('[name="gender"]');
+                let gender = $(g).val();
+                let dob = $("#dob").val();
+                let city = $("#city").val();
+                let h = $('[name="hobby"]');
+                let hobby = [$(h).val()];
+
+                console.log(gender);
+                console.log(hobby);
+                
+                if(fname=='') {
+                    $("#name").addClass('is-invalid')
+                    $("#name").removeClass('is-valid')
+
+                    $("#e1").text("Name Can Not be Blank")
+                    $("#e1").css("color","red")
+                } else {
+                    $("#name").removeClass('is-invalid')
+                    $("#name").addClass('is-valid')
+                    $("#e1").text("")
+                }
+
+                if(email=='') {
+                    $("#email").addClass('is-invalid')
+                    $("#email").removeClass('is-valid')
+                } else {
+                    $("#email").removeClass('is-invalid')
+                    $("#email").addClass('is-valid')
+                }
 
                 $.ajax({
                     type: "POST",
